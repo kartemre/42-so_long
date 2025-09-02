@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 09:46:59 by ekart             #+#    #+#             */
-/*   Updated: 2025/09/02 10:06:30 by ekart            ###   ########.fr       */
+/*   Updated: 2025/09/02 10:09:57 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ static void error_msg(const char *msg)
 {
 	putstr_fd("Error\n", 2);
 	if (!msg)
-		putstr_fd(msg, 2); putstr_fd("\n", 2);
+	{
+		putstr_fd(msg, 2);
+		putstr_fd("\n", 2);
+	}
 }
 
 static int ends_with_ber(const char *p)
@@ -40,7 +43,7 @@ static int ends_with_ber(const char *p)
 		i++;
 	if (i < 4)
 		return (0);
-	return (p[i - 4] == '.' && p[i - 3] == 'b' && p[i - 2] == 'e' && p[i - 1] == 'r' )
+	return (p[i - 4] == '.' && p[i - 3] == 'b' && p[i - 2] == 'e' && p[i - 1] == 'r' );
 }
 
 int main (int argc, char **argv)

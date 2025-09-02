@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   step1_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
+/*   By: ekarr <ekartk@student.42istanbul.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 09:46:59 by ekart             #+#    #+#             */
-/*   Updated: 2025/09/02 10:09:57 by ekart            ###   ########.fr       */
+/*   Updated: 2025/09/02 18:36:30 by ekarr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void putstr_fd(const char *s, int fd)
 static void error_msg(const char *msg)
 {
 	putstr_fd("Error\n", 2);
-	if (!msg)
+	if (msg)
 	{
 		putstr_fd(msg, 2);
 		putstr_fd("\n", 2);
@@ -54,7 +54,7 @@ int main (int argc, char **argv)
 		return 1;
 	}
 	const char *path = argv[1];
-	if (ends_with_ber(path))
+	if (!ends_with_ber(path))
 	{
 		error_msg("Map file must have .ber extension");
         	return 1;

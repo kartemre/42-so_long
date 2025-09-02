@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   step1_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekarr <ekartk@student.42istanbul.com.tr    +#+  +:+       +#+        */
+/*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 09:46:59 by ekart             #+#    #+#             */
-/*   Updated: 2025/09/02 18:36:30 by ekarr            ###   ########.fr       */
+/*   Updated: 2025/09/02 21:08:01 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 #include <fcntl.h>
 #include <string.h>
 #include <errno.h>
+
+typedef struct s_map {
+    char **grid;
+    int   rows;
+    int   cols;
+}	t_map;
+int  map_load_fd(int fd, t_map *out);
+void map_free(t_map *m);
 
 static void putstr_fd(const char *s, int fd)
 {
@@ -69,7 +77,44 @@ int main (int argc, char **argv)
 		putstr_fd("\n", 2);
 		return 1;
 	}
-	putstr_fd("ok. opened map file", 1);
+	putstr_fd("ok. opened map file\n", 1);
+	t_map m = {0};
+	if (map_load_fd(fd, &m) != 0)
+	{
+		putstr_fd("Error\n failed to read map\n", 2);
+		close(fd);
+		return (1);
+	}
 	close(fd);
+	putstr_fd("MAP: rows=", 1);
+	{
+		char buf[32]; int n = m.rows, k = 31; buf[k--] = '\0';
+		if (n==0) buf[k--]='0';
+		while (n>0) { buf[k--] = '0' + (n%10); n/=10; }
+		putstr_fd(&buf[k+1], 1);
+	}
+	putstr_fd(" cols=", 1);
+	{
+		char buf[32]; int n = m.cols, k = 31; buf[k--] = '\0';
+		if (n==0) buf[k--]='0';
+		while (n>0) { buf[k--] = '0' + (n%10); n/=10; }
+		putstr_fd(&buf[k+1], 1);
+	}
+	putstr_fd("\n", 1);
+
+	if (m.rows > 0) {
+		putstr_fd("row0: ", 1);
+		putstr_fd("\n", 1);
+		putstr_fd(m.grid[0], 1);
+		putstr_fd("\n", 1);
+		putstr_fd(m.grid[1], 1);
+		putstr_fd("\n", 1);
+		putstr_fd(m.grid[2], 1);
+		putstr_fd("\n", 1);
+		putstr_fd(m.grid[3], 1);
+		putstr_fd("\n", 1);
+	}
+
+	map_free(&m);
 	return (0);
 }

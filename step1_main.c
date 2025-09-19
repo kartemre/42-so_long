@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 09:46:59 by ekart             #+#    #+#             */
-/*   Updated: 2025/09/19 17:19:21 by ekart            ###   ########.fr       */
+/*   Updated: 2025/09/19 22:50:08 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_map {
     int   cols;
 }	t_map;
 
+int validate_walls(const t_map *m, const char **err_msg);
 
 typedef struct s_counts { int c,e,p; } t_counts;
 int validate_rect_chatset_count(const t_map *m, t_counts *out, const char **err_msg);
@@ -130,6 +131,14 @@ int main (int argc, char **argv)
 		return 1;
 	}
 	putstr_fd("OK: rectangular + charset + counts\n", 1);
+	const char *err2 = NULL;
+	if (!validate_walls(&m, &err2)) {
+		putstr_fd("Error\n", 2);
+		if (err2) { putstr_fd(err2, 2); putstr_fd("\n", 2); }
+		map_free(&m);
+		return 1;
+	}
+	putstr_fd("OK: surrounded by walls\n", 1);
 	map_free(&m);
 	return (0);
 }

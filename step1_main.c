@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 09:46:59 by ekart             #+#    #+#             */
-/*   Updated: 2025/09/02 21:08:01 by ekart            ###   ########.fr       */
+/*   Updated: 2025/09/19 17:19:21 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ typedef struct s_map {
     int   rows;
     int   cols;
 }	t_map;
+
+
+typedef struct s_counts { int c,e,p; } t_counts;
+int validate_rect_chatset_count(const t_map *m, t_counts *out, const char **err_msg);
+
 int  map_load_fd(int fd, t_map *out);
 void map_free(t_map *m);
 
@@ -115,6 +120,16 @@ int main (int argc, char **argv)
 		putstr_fd("\n", 1);
 	}
 
+	const char *err = NULL;
+	t_counts counts = {0};
+	if (!validate_rect_chatset_count(&m, &counts, &err))
+	{
+		putstr_fd("Error\n", 2);
+		if (err) {	putstr_fd(err, 2); putstr_fd("\n", 2); }
+		map_free(&m);
+		return 1;
+	}
+	putstr_fd("OK: rectangular + charset + counts\n", 1);
 	map_free(&m);
 	return (0);
 }

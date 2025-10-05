@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 13:20:03 by ekart             #+#    #+#             */
-/*   Updated: 2025/10/05 18:11:07 by ekart            ###   ########.fr       */
+/*   Updated: 2025/10/05 20:54:40 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,15 @@ static t_img make_solid_tile(void *mlx, int color)
     return i;
 }
 
-
+// XPM'den tile yükle
+static t_img load_xpm_tile(void *mlx, const char *path) {
+    t_img i; int w=0, h=0;
+    i.img = mlx_xpm_file_to_image(mlx, (char*)path, &w, &h);
+    if (!i.img) { i.addr=NULL; i.bpp=0; i.line_len=0; i.endian=0; return i; }
+    i.addr = mlx_get_data_addr(i.img, &i.bpp, &i.line_len, &i.endian);
+    // İsteğe bağlı: w!=TILE || h!=TILE ise uyarı basabilirsin.
+    return i;
+}
 
 /* --- public API --- */
 int  game_init_and_draw(t_game *g, t_map *m)
@@ -112,11 +120,31 @@ int  game_init_and_draw(t_game *g, t_map *m)
     if (!g->win) return 0;
 
     // Tek renkli tile’ları hazırla (BGRx gibi düşünülebilir; test et)
-    g->wall    = make_solid_tile(g->mlx, 0x00333333); // koyu gri
-    g->floor   = make_solid_tile(g->mlx, 0x00000000); // siyah
-    g->exit    = make_solid_tile(g->mlx, 0x00FF8800); // turuncu
-    g->collect = make_solid_tile(g->mlx, 0x00FFFF00); // sarı
-    g->player  = make_solid_tile(g->mlx, 0x0000FF00); // yeşil
+    g->wall    = load_xpm_tile(g->mlx, "textures/wall.xpm");
+    if (!g->wall.img) {
+        // fallback: xpm yüklenemezse yeşil kare
+        g->wall    = make_solid_tile(g->mlx, 0x00333333); // koyu gri
+    }
+    g->floor    = load_xpm_tile(g->mlx, "textures/floor.xpm");
+    if (!g->floor.img) {
+        // fallback: xpm yüklenemezse siyah kare
+        g->floor   = make_solid_tile(g->mlx, 0x00000000); // siyah
+    }
+    g->exit = load_xpm_tile(g->mlx, "textures/exit.xpm");
+    if (!g->exit.img) {
+        // fallback: xpm yüklenemezse yeşil kare
+        g->exit    = make_solid_tile(g->mlx, 0x00FF8800); // turuncu
+    }
+    g->collect = load_xpm_tile(g->mlx, "textures/collect.xpm");
+    if (!g->collect.img) {
+        // fallback: xpm yüklenemezse yeşil kare
+        g->collect = make_solid_tile(g->mlx, 0x00FFFF00); // sarı
+    }
+    g->player = load_xpm_tile(g->mlx, "textures/player.xpm");
+    if (!g->player.img) {
+        // fallback: xpm yüklenemezse yeşil kare
+        g->player = make_solid_tile(g->mlx, 0x0000FF00);
+    }
 
     g->remaining_c = 0;
     g->pr = g->pc = -1;
@@ -143,7 +171,7 @@ int  game_init_and_draw(t_game *g, t_map *m)
             put_tile(g, t, c, r);
         }
     }
-        */
+    */
     return 1;
 }
 
@@ -191,9 +219,12 @@ void game_destroy(t_game *g)
     if (g->player.img)  mlx_destroy_image(g->mlx, g->player.img);
     if (g->win)         mlx_destroy_window(g->mlx, g->win);
     // bazı mlx sürümlerinde display/free gerekebilir (Linux):
-#ifdef __linux__
-    if (g->mlx)         mlx_destroy_display(g->mlx);
-#endif
+    if (g->mlx)
+    {
+        mlx_destroy_display(g->mlx);
+        free(g->mlx);
+        //free(g);
+    }
     // mlx pointer’ı genelde free edilmez; kampüs kurulumuna göre değişebilir
 }
 

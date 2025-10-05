@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 09:47:27 by ekart             #+#    #+#             */
-/*   Updated: 2025/10/05 14:20:03 by ekart            ###   ########.fr       */
+/*   Updated: 2025/10/05 20:31:15 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_map {
 
 typedef struct s_counts { int c, e, p; } t_counts;
 
-#define TILE 32
+#define TILE 64
 
 typedef struct s_img {
     void *img;

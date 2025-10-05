@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 13:20:03 by ekart             #+#    #+#             */
-/*   Updated: 2025/10/05 14:36:01 by ekart            ###   ########.fr       */
+/*   Updated: 2025/10/05 18:11:07 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,11 +165,19 @@ static int on_destroy(t_game *g)
     return 0;
 }
 
+static int on_expose(t_game *g)
+{
+    // pencere yeniden görünür olduğunda baştan çiz
+    redraw_all(g);
+    return 0;
+}
+
 void game_loop(t_game *g)
 {
     // ESC ve pencere çarpısı
     mlx_hook(g->win, 2, 1L<<0, (int (*)(void))on_key, g);       // KeyPress
     mlx_hook(g->win, 17, 1L<<17, (int (*)(void))on_destroy, g); // DestroyNotify
+    mlx_expose_hook(g->win, (int (*)(void*))on_expose, g);       // ← expose
     mlx_loop(g->mlx);
 }
 

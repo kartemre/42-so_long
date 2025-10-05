@@ -6,7 +6,11 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 09:46:59 by ekart             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/09/19 22:50:08 by ekart            ###   ########.fr       */
+=======
+/*   Updated: 2025/10/05 13:03:16 by ekart            ###   ########.fr       */
+>>>>>>> 9bfa3e0 ((+)walls and path check ready)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +30,8 @@ int validate_walls(const t_map *m, const char **err_msg);
 
 typedef struct s_counts { int c,e,p; } t_counts;
 int validate_rect_chatset_count(const t_map *m, t_counts *out, const char **err_msg);
+int validate_walls(const t_map *m, const char **err_msg);
+int validate_path(const t_map *m, int need_c, int need_e, const char **err_msg);
 
 int  map_load_fd(int fd, t_map *out);
 void map_free(t_map *m);
@@ -139,6 +145,15 @@ int main (int argc, char **argv)
 		return 1;
 	}
 	putstr_fd("OK: surrounded by walls\n", 1);
+	const char *err3 = NULL;
+	if (!validate_path(&m, counts.c, 1, &err3)) {
+		putstr_fd("Error\n", 2);
+		if (err3) { putstr_fd(err3, 2); putstr_fd("\n", 2); }
+		map_free(&m);
+		return 1;
+	}
+	putstr_fd("OK: valid path (all C & E reachable)\n", 1);
+
 	map_free(&m);
 	return (0);
 }

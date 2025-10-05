@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:40:04 by ekart             #+#    #+#             */
-/*   Updated: 2025/09/19 17:40:05 by ekart            ###   ########.fr       */
+/*   Updated: 2025/10/05 13:37:09 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int rowlen(const char *s)
     return n;   
 }
 
-int validate_rect_chatset_count(const t_map *m, t_counts *out, const char **err_msg)
+int validate_rect_charset_counts(const t_map *m, t_counts *out, const char **err_msg)
 {
 	int r;
 	int c;

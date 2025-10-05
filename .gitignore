@@ -1,0 +1,6 @@
+/minilibx-linux/
+/so_long
+*.o
+*.a
+.dSYM/
+.DS_Store

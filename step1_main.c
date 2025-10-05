@@ -6,35 +6,16 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 09:46:59 by ekart             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/09/19 22:50:08 by ekart            ###   ########.fr       */
-=======
-/*   Updated: 2025/10/05 13:03:16 by ekart            ###   ########.fr       */
->>>>>>> 9bfa3e0 ((+)walls and path check ready)
+/*   Updated: 2025/10/05 13:36:56 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "so_long.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
 #include <string.h>
 #include <errno.h>
-
-typedef struct s_map {
-    char **grid;
-    int   rows;
-    int   cols;
-}	t_map;
-
-int validate_walls(const t_map *m, const char **err_msg);
-
-typedef struct s_counts { int c,e,p; } t_counts;
-int validate_rect_chatset_count(const t_map *m, t_counts *out, const char **err_msg);
-int validate_walls(const t_map *m, const char **err_msg);
-int validate_path(const t_map *m, int need_c, int need_e, const char **err_msg);
-
-int  map_load_fd(int fd, t_map *out);
-void map_free(t_map *m);
 
 static void putstr_fd(const char *s, int fd)
 {
@@ -129,7 +110,7 @@ int main (int argc, char **argv)
 
 	const char *err = NULL;
 	t_counts counts = {0};
-	if (!validate_rect_chatset_count(&m, &counts, &err))
+	if (!validate_rect_charset_counts(&m, &counts, &err))
 	{
 		putstr_fd("Error\n", 2);
 		if (err) {	putstr_fd(err, 2); putstr_fd("\n", 2); }
@@ -153,7 +134,16 @@ int main (int argc, char **argv)
 		return 1;
 	}
 	putstr_fd("OK: valid path (all C & E reachable)\n", 1);
-
+	// --- MLX başlat & çiz ---
+	t_game G = {0};
+	if (!game_init_and_draw(&G, &m)) {
+		putstr_fd("Error\nmlx init/draw failed\n", 2);
+		map_free(&m);
+		return 1;
+	}
+	putstr_fd("OK: window opened, press ESC to quit\n", 1);
+	game_loop(&G);
+	game_destroy(&G);
 	map_free(&m);
 	return (0);
 }

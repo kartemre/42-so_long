@@ -6,14 +6,11 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:56:42 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 12:56:44 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 18:13:11 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
 
 static void	process_lines(const char *buf, size_t len, t_parse *p)
 {

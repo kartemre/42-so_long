@@ -6,12 +6,11 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:56:20 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 12:56:22 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 18:12:18 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
 static void	draw_row(t_game *g, int r)
 {

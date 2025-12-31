@@ -6,14 +6,11 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:56:27 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 12:56:29 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 18:12:42 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <fcntl.h>
-#include <string.h>
-#include <errno.h>
 
 static int	validate_arguments(int argc, char **argv)
 {
@@ -36,7 +33,7 @@ static int	open_map_file(const char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		ft_putstr_fd("Error\n", 2);
+		error_exit("cannot open map file");
 	return (fd);
 }
 

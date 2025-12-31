@@ -6,14 +6,11 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:56:33 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 12:56:36 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 18:13:02 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
 
 void	*ft_malloc(size_t n)
 {

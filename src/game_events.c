@@ -6,12 +6,11 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:55:43 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 12:55:45 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 18:11:59 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
 static int	try_exit(t_game *g)
 {

@@ -6,12 +6,11 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:55:54 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 12:55:56 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 18:12:05 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
 int	on_destroy(t_game *g)
 {

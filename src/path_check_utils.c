@@ -6,13 +6,11 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:57:10 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 12:57:12 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 18:13:19 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdlib.h>
-#include <string.h>
 
 static size_t	ft_strlen(const char *s)
 {

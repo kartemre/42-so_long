@@ -6,12 +6,11 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:56:04 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 12:56:06 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 18:12:10 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
 static t_img	make_solid_tile(void *mlx, int color)
 {

@@ -6,12 +6,11 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:57:16 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 12:57:17 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 18:13:24 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdlib.h>
 
 static void	dfs(t_dfs_ctx ctx, t_pt p, t_reach *r)
 {

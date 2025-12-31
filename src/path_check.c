@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:57:16 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 18:13:24 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 18:43:00 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ static void	dfs(t_dfs_ctx ctx, t_pt p, t_reach *r)
 	if (ch == 'C')
 		r->rc++;
 	if (ch == 'E')
+	{
 		r->re++;
+		return ;
+	}
 	ctx.g[p.r][p.c] = 'V';
 	dfs(ctx, (t_pt){p.r + 1, p.c}, r);
 	dfs(ctx, (t_pt){p.r - 1, p.c}, r);
@@ -42,7 +45,7 @@ static int	check_all_reachable(const t_map *m, int need_c, int need_e)
 
 	if (!find_player(m, &pr, &pc))
 		return (0);
-	cpy = dup_grid(m->grid, m->rows, m->cols);
+	cpy = dup_grid(m->grid, m->rows);
 	if (!cpy)
 		return (0);
 	reach.rc = 0;
@@ -60,7 +63,7 @@ static int	validate_basic_map(const t_map *m, const char **err)
 	if (!m || m->rows <= 0 || m->cols <= 0)
 	{
 		if (err)
-			*err = "empty or invalid map dimensions";
+			*err = "No valid road";
 		return (0);
 	}
 	return (1);
@@ -73,7 +76,7 @@ int	validate_path(const t_map *m, int need_c, int need_e, const char **err)
 	if (!check_all_reachable(m, need_c, need_e))
 	{
 		if (err)
-			*err = "not all collectibles are reachable";
+			*err = "No valid road";
 		return (0);
 	}
 	return (1);

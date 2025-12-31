@@ -16,12 +16,12 @@ static int	validate_arguments(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		error_exit("Usage: ./so_long <map.ber>");
+		error_exit("Wrong number of arguments");
 		return (0);
 	}
 	if (!check_ber_extension(argv[1]))
 	{
-		error_exit("Map file must have .ber extension");
+		error_exit("Bad extension");
 		return (0);
 	}
 	return (1);
@@ -31,6 +31,10 @@ static int	open_map_file(const char *path)
 {
 	int	fd;
 
+	if (access(path, F_OK) != 0)
+		error_exit("No exist map");
+	if (access(path, R_OK) != 0)
+		error_exit("Permission denied");
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		error_exit("cannot open map file");

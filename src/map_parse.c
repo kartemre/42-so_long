@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:56:42 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 18:13:11 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 18:45:39 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	process_lines(const char *buf, size_t len, t_parse *p)
 	i = 0;
 	line_start = 0;
 	p->first_len = -1;
-	while (i <= len)
+	while (i < len)
 	{
-		if (i == len || buf[i] == '\n')
+		if (buf[i] == '\n')
 		{
 			p->grid[p->r++] = copy_line(buf, line_start, i);
 			if (p->first_len < 0)
@@ -31,6 +31,12 @@ static void	process_lines(const char *buf, size_t len, t_parse *p)
 			line_start = i + 1;
 		}
 		i++;
+	}
+	if (line_start < len)
+	{
+		p->grid[p->r++] = copy_line(buf, line_start, len);
+		if (p->first_len < 0)
+			p->first_len = (int)(len - line_start);
 	}
 }
 

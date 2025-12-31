@@ -29,7 +29,7 @@ int	check_rectangle(const t_map *m, const char **err_msg)
 	if (!m || m->rows <= 0 || m->cols <= 0)
 	{
 		if (err_msg)
-			*err_msg = "empty or invalid map dimensions";
+			*err_msg = "No rectangular";
 		return (0);
 	}
 	r = 0;
@@ -38,7 +38,7 @@ int	check_rectangle(const t_map *m, const char **err_msg)
 		if (ft_strlen(m->grid[r]) != m->cols)
 		{
 			if (err_msg)
-				*err_msg = "map is not rectangular";
+				*err_msg = "No rectangular";
 			return (0);
 		}
 		r++;

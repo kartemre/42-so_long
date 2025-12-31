@@ -45,8 +45,12 @@ void	ft_putnbr_fd(int n, int fd)
 
 void	error_exit(const char *msg)
 {
-	(void)msg;
 	ft_putstr_fd("Error\n", 2);
+	if (msg)
+	{
+		ft_putstr_fd(msg, 2);
+		ft_putstr_fd("\n", 2);
+	}
 	exit(1);
 }
 

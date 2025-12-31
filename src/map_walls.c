@@ -45,25 +45,25 @@ int	validate_walls(const t_map *m, const char **err_msg)
 	if (!m || m->rows <= 0 || m->cols <= 0)
 	{
 		if (err_msg)
-			*err_msg = "empty or invalid map dimensions";
+			*err_msg = "Not surrounded by walls";
 		return (0);
 	}
 	if (!check_row_walls(m->grid[0], m->cols))
 	{
 		if (err_msg)
-			*err_msg = "map borders must be walls (top/bottom)";
+			*err_msg = "Not surrounded by walls";
 		return (0);
 	}
 	if (!check_row_walls(m->grid[m->rows - 1], m->cols))
 	{
 		if (err_msg)
-			*err_msg = "map borders must be walls (top/bottom)";
+			*err_msg = "Not surrounded by walls";
 		return (0);
 	}
 	if (!check_side_walls(m))
 	{
 		if (err_msg)
-			*err_msg = "map borders must be walls (sides)";
+			*err_msg = "Not surrounded by walls";
 		return (0);
 	}
 	return (1);

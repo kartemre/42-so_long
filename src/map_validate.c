@@ -27,7 +27,7 @@ static int	check_chars_and_count(const t_map *m, t_counts *cnt,
 			if (!is_valid_char(m->grid[r][c]))
 			{
 				if (err)
-					*err = "map contains invalid character (allowed: 01CEP)";
+					*err = "Wrong characters";
 				return (0);
 			}
 			count_char(m->grid[r][c], cnt);
@@ -38,24 +38,43 @@ static int	check_chars_and_count(const t_map *m, t_counts *cnt,
 	return (1);
 }
 
+static int	validate_exit_player(const t_counts *cnt, const char **err_msg)
+{
+	if (cnt->e == 0)
+	{
+		if (err_msg)
+			*err_msg = "No exit";
+		return (0);
+	}
+	if (cnt->e > 1)
+	{
+		if (err_msg)
+			*err_msg = "Duplicate exit";
+		return (0);
+	}
+	if (cnt->p == 0)
+	{
+		if (err_msg)
+			*err_msg = "No player";
+		return (0);
+	}
+	if (cnt->p > 1)
+	{
+		if (err_msg)
+			*err_msg = "Duplicate player";
+		return (0);
+	}
+	return (1);
+}
+
 static int	validate_counts(const t_counts *cnt, const char **err_msg)
 {
-	if (cnt->e != 1)
-	{
-		if (err_msg)
-			*err_msg = "map must contain exactly 1 E (exit)";
+	if (!validate_exit_player(cnt, err_msg))
 		return (0);
-	}
-	if (cnt->p != 1)
-	{
-		if (err_msg)
-			*err_msg = "map must contain exactly 1 P (player)";
-		return (0);
-	}
 	if (cnt->c < 1)
 	{
 		if (err_msg)
-			*err_msg = "map must contain at least 1 C (collectible)";
+			*err_msg = "No object";
 		return (0);
 	}
 	return (1);

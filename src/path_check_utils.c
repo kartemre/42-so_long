@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:57:10 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 18:13:19 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 18:42:04 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ static size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	**dup_grid(char **grid, int rows, int cols)
+char	**dup_grid(char **grid, int rows)
 {
 	char	**cpy;
 	int		r;
+	size_t	len;
 
 	cpy = (char **)malloc(sizeof(char *) * rows);
 	if (!cpy)
@@ -33,7 +34,8 @@ char	**dup_grid(char **grid, int rows, int cols)
 	r = 0;
 	while (r < rows)
 	{
-		cpy[r] = (char *)malloc(cols + 1);
+		len = ft_strlen(grid[r]);
+		cpy[r] = (char *)malloc(len + 1);
 		if (!cpy[r])
 		{
 			while (r > 0)
@@ -41,8 +43,8 @@ char	**dup_grid(char **grid, int rows, int cols)
 			free(cpy);
 			return (NULL);
 		}
-		memcpy(cpy[r], grid[r], cols);
-		cpy[r][cols] = '\0';
+		memcpy(cpy[r], grid[r], len);
+		cpy[r][len] = '\0';
 		r++;
 	}
 	return (cpy);

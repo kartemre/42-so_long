@@ -111,7 +111,7 @@ int		validate_rect_charset_counts(const t_map *m, t_counts *out,
 int		validate_all(t_map *m, t_counts *counts);
 int		validate_walls(const t_map *m, const char **err_msg);
 
-char	**dup_grid(char **grid, int rows, int cols);
+char	**dup_grid(char **grid, int rows);
 void	free_grid(char **g, int rows);
 int		find_player(const t_map *m, int *pr, int *pc);
 

@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:57:24 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 12:57:27 by ekart            ###   ########.fr       */
+/*   Updated: 2025/12/31 17:59:12 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,8 @@ void	ft_putnbr_fd(int n, int fd)
 
 void	error_exit(const char *msg)
 {
+	(void)msg;
 	ft_putstr_fd("Error\n", 2);
-	if (msg)
-	{
-		ft_putstr_fd(msg, 2);
-		ft_putstr_fd("\n", 2);
-	}
 }
 
 int	check_ber_extension(const char *path)

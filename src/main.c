@@ -36,13 +36,7 @@ static int	open_map_file(const char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_putstr_fd("Error\ncannot open ", 2);
-		ft_putstr_fd(path, 2);
-		ft_putstr_fd(": ", 2);
-		ft_putstr_fd(strerror(errno), 2);
-		ft_putstr_fd("\n", 2);
-	}
+		ft_putstr_fd("Error\n", 2);
 	return (fd);
 }
 

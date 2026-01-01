@@ -45,11 +45,11 @@ void	ft_putnbr_fd(int n, int fd)
 
 void	error_exit(const char *msg)
 {
-	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("Error\n", 1);
 	if (msg)
 	{
-		ft_putstr_fd(msg, 2);
-		ft_putstr_fd("\n", 2);
+		ft_putstr_fd(msg, 1);
+		ft_putstr_fd("\n", 1);
 	}
 	exit(1);
 }
@@ -57,14 +57,23 @@ void	error_exit(const char *msg)
 int	check_ber_extension(const char *path)
 {
 	int	i;
+	int	last_slash;
 
 	i = 0;
+	last_slash = -1;
 	while (path[i])
+	{
+		if (path[i] == '/')
+			last_slash = i;
 		i++;
-	if (i < 4)
+	}
+	if (i < 5)
+		return (0);
+	if (last_slash >= 0 && last_slash == i - 5)
 		return (0);
 	if (path[i - 4] == '.' && path[i - 3] == 'b'
-		&& path[i - 2] == 'e' && path[i - 1] == 'r')
+		&& path[i - 2] == 'e' && path[i - 1] == 'r'
+		&& (last_slash < 0 || path[last_slash + 1] != '.'))
 		return (1);
 	return (0);
 }

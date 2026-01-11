@@ -99,6 +99,11 @@ int	map_load_fd(int fd, t_map *out)
 	buf = read_file(fd, &len);
 	if (!buf)
 		return (-1);
+	if (len == 0)
+	{
+		free(buf);
+		return (-1);
+	}
 	out->grid = split_to_lines(buf, len, &out->rows, &out->cols);
 	free(buf);
 	return (0);

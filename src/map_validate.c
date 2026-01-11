@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:56:56 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 12:56:58 by ekart            ###   ########.fr       */
+/*   Updated: 2026/01/11 19:06:17 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,20 +106,20 @@ int	validate_all(t_map *m, t_counts *counts)
 	err = NULL;
 	if (!validate_rect_charset_counts(m, counts, &err))
 	{
-		error_exit(err);
 		map_free(m);
+		error_exit(err);
 		return (0);
 	}
 	if (!validate_walls(m, &err))
 	{
-		error_exit(err);
 		map_free(m);
+		error_exit(err);
 		return (0);
 	}
 	if (!validate_path(m, counts->c, 1, &err))
 	{
-		error_exit(err);
 		map_free(m);
+		error_exit(err);
 		return (0);
 	}
 	return (1);

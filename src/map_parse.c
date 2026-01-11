@@ -60,7 +60,7 @@ static char	*expand_buffer(char *buf, size_t len, size_t *cap)
 
 	*cap *= 2;
 	nb = (char *)ft_malloc(*cap);
-	memcpy(nb, buf, len);
+	ft_memcpy(nb, buf, len);
 	free(buf);
 	return (nb);
 }

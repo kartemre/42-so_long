@@ -18,7 +18,7 @@ void	*ft_malloc(size_t n)
 
 	p = malloc(n);
 	if (!p)
-		_exit(12);
+		exit(12);
 	return (p);
 }
 
@@ -48,7 +48,7 @@ char	*copy_line(const char *buf, size_t start, size_t end)
 	len = end - start;
 	row = (char *)ft_malloc(len + 1);
 	if (len)
-		memcpy(row, buf + start, len);
+		ft_memcpy(row, buf + start, len);
 	row[len] = '\0';
 	return (row);
 }

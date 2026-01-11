@@ -12,16 +12,6 @@
 
 #include "so_long.h"
 
-static size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 char	**dup_grid(char **grid, int rows)
 {
 	char	**cpy;
@@ -43,7 +33,7 @@ char	**dup_grid(char **grid, int rows)
 			free(cpy);
 			return (NULL);
 		}
-		memcpy(cpy[r], grid[r], len);
+		ft_memcpy(cpy[r], grid[r], len);
 		cpy[r][len] = '\0';
 		r++;
 	}

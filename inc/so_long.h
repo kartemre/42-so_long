@@ -6,7 +6,7 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:57:39 by ekart             #+#    #+#             */
-/*   Updated: 2026/01/11 11:34:29 by ekart            ###   ########.fr       */
+/*   Updated: 2026/01/11 20:30:04 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 # include <unistd.h>
 # include <mlx.h>
 # include <fcntl.h>
-# include <string.h>
-# include <errno.h>
+# include "libft.h"
 
 # define TILE 64
 
@@ -128,8 +127,6 @@ int		on_key(int keycode, t_game *g);
 int		on_destroy(t_game *g);
 int		on_expose(t_game *g);
 
-void	ft_putstr_fd(const char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
 void	error_exit(const char *msg);
 int		check_ber_extension(const char *path);
 

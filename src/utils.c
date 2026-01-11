@@ -12,44 +12,13 @@
 
 #include "so_long.h"
 
-void	ft_putstr_fd(const char *s, int fd)
-{
-	if (!s)
-		return ;
-	while (*s)
-		write(fd, s++, 1);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	char	buf[32];
-	int		k;
-	int		sign;
-
-	k = 31;
-	buf[k--] = '\0';
-	if (n == 0)
-		buf[k--] = '0';
-	sign = (n < 0);
-	if (sign)
-		n = -n;
-	while (n > 0)
-	{
-		buf[k--] = '0' + (n % 10);
-		n /= 10;
-	}
-	if (sign)
-		buf[k--] = '-';
-	ft_putstr_fd(&buf[k + 1], fd);
-}
-
 void	error_exit(const char *msg)
 {
-	ft_putstr_fd("Error\n", 1);
+	write(1, "Error\n", 6);
 	if (msg)
 	{
-		ft_putstr_fd(msg, 1);
-		ft_putstr_fd("\n", 1);
+		write(1, msg, ft_strlen(msg));
+		write(1, "\n", 1);
 	}
 	exit(1);
 }

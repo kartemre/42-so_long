@@ -12,16 +12,6 @@
 
 #include "so_long.h"
 
-static int	ft_strlen(const char *s)
-{
-	int	n;
-
-	n = 0;
-	while (s && s[n])
-		n++;
-	return (n);
-}
-
 int	check_rectangle(const t_map *m, const char **err_msg)
 {
 	int	r;
@@ -35,7 +25,7 @@ int	check_rectangle(const t_map *m, const char **err_msg)
 	r = 0;
 	while (r < m->rows)
 	{
-		if (ft_strlen(m->grid[r]) != m->cols)
+		if ((int)ft_strlen(m->grid[r]) != m->cols)
 		{
 			if (err_msg)
 				*err_msg = "No rectangular";

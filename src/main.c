@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/31 12:56:27 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 18:12:42 by ekart            ###   ########.fr       */
+/*   Created: 2026/01/01 13:00:51 by ekart             #+#    #+#             */
+/*   Updated: 2026/01/11 13:01:41 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ static int	open_map_file(const char *path)
 {
 	int	fd;
 
-	if (access(path, F_OK) != 0)
-		error_exit("No exist map");
-	if (access(path, R_OK) != 0)
-		error_exit("Permission denied");
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		error_exit("cannot open map file");

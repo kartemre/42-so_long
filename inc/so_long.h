@@ -6,14 +6,13 @@
 /*   By: ekart <ekart@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 12:57:39 by ekart             #+#    #+#             */
-/*   Updated: 2025/12/31 18:12:51 by ekart            ###   ########.fr       */
+/*   Updated: 2026/01/11 11:34:29 by ekart            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <mlx.h>

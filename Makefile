@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MLX_DIR = minilibx-linux
 INCS = -Iinc -I$(MLX_DIR)
-MLX_LIB = $(MLX_DIR)/libmlx_Linux.a
+MLX_LIB = $(MLX_DIR)/libmlx.a
 MLX_LDFLAGS = -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
 
 SRC_DIR = src
